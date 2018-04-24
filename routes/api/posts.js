@@ -127,10 +127,6 @@ router.delete(
   '/comment/:id/:comment_id',
   passport.authenticate('jwt', { session: false }),
   (req, res, next) => {
-    const { errors, isValid } = validatePostInput(req.body);
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
     Post.findById(req.params.id)
       .then(post => {
         const comment = post.comments.find(

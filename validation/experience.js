@@ -1,13 +1,12 @@
 const Validator = require('validator');
-
-const isEmpty = require('./is-empty');
+const _ = require('lodash');
 
 module.exports = ({ title, company, from }) => {
   const errors = {};
 
-  title = isEmpty(title) ? '' : title;
-  company = isEmpty(company) ? '' : company;
-  from = isEmpty(from) ? '' : from;
+  title = _.isEmpty(title) ? '' : title;
+  company = _.isEmpty(company) ? '' : company;
+  from = _.isEmpty(from) ? '' : from;
 
   if (Validator.isEmpty(title)) {
     errors.title = 'Title field is required';
@@ -21,5 +20,5 @@ module.exports = ({ title, company, from }) => {
     errors.from = 'From field is required';
   }
 
-  return { errors, isValid: isEmpty(errors) };
+  return { errors, isValid: _.isEmpty(errors) };
 };

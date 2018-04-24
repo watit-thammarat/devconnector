@@ -1,6 +1,5 @@
 const Validator = require('validator');
-
-const isEmpty = require('./is-empty');
+const _ = require('lodash');
 
 module.exports = ({
   handle,
@@ -15,9 +14,9 @@ module.exports = ({
 }) => {
   const errors = {};
 
-  handle = isEmpty(handle) ? '' : handle;
-  status = isEmpty(status) ? '' : status;
-  skills = isEmpty(skills) ? '' : skills;
+  handle = _.isEmpty(handle) ? '' : handle;
+  status = _.isEmpty(status) ? '' : status;
+  skills = _.isEmpty(skills) ? '' : skills;
 
   if (!Validator.isLength(handle, { min: 2, max: 40 })) {
     errors.handle = 'Handle needs to between 3 and 40 characters';
@@ -35,41 +34,41 @@ module.exports = ({
     errors.skills = 'Skills field is required';
   }
 
-  if (!isEmpty(website)) {
+  if (!_.isEmpty(website)) {
     if (!Validator.isURL(website)) {
       errors.website = 'Not a valid URL';
     }
   }
 
-  if (!isEmpty(youtube)) {
+  if (!_.isEmpty(youtube)) {
     if (!Validator.isURL(youtube)) {
       errors.youtube = 'Not a valid URL';
     }
   }
 
-  if (!isEmpty(twitter)) {
+  if (!_.isEmpty(twitter)) {
     if (!Validator.isURL(twitter)) {
       errors.twitter = 'Not a valid URL';
     }
   }
 
-  if (!isEmpty(facebook)) {
+  if (!_.isEmpty(facebook)) {
     if (!Validator.isURL(facebook)) {
       errors.facebook = 'Not a valid URL';
     }
   }
 
-  if (!isEmpty(linkedin)) {
+  if (!_.isEmpty(linkedin)) {
     if (!Validator.isURL(linkedin)) {
       errors.linkedin = 'Not a valid URL';
     }
   }
 
-  if (!isEmpty(instagram)) {
+  if (!_.isEmpty(instagram)) {
     if (!Validator.isURL(instagram)) {
       errors.instagram = 'Not a valid URL';
     }
   }
 
-  return { errors, isValid: isEmpty(errors) };
+  return { errors, isValid: _.isEmpty(errors) };
 };

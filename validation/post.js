@@ -1,11 +1,10 @@
 const Validator = require('validator');
-
-const isEmpty = require('./is-empty');
+const _ = require('lodash');
 
 module.exports = ({ text }) => {
   const errors = {};
 
-  text = isEmpty(text) ? '' : text;
+  text = _.isEmpty(text) ? '' : text;
 
   if (!Validator.isLength(text, { min: 10, max: 300 })) {
     errors.text = 'Post must be between 10 and 300 characters';
@@ -15,5 +14,5 @@ module.exports = ({ text }) => {
     errors.text = 'Text field is required';
   }
 
-  return { errors, isValid: isEmpty(errors) };
+  return { errors, isValid: _.isEmpty(errors) };
 };

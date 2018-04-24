@@ -1,14 +1,13 @@
 const Validator = require('validator');
-
-const isEmpty = require('./is-empty');
+const _ = require('lodash');
 
 module.exports = ({ school, degree, from, fieldofstudy }) => {
   const errors = {};
 
-  school = isEmpty(school) ? '' : school;
-  degree = isEmpty(degree) ? '' : degree;
-  fieldofstudy = isEmpty(fieldofstudy) ? '' : fieldofstudy;
-  from = isEmpty(from) ? '' : from;
+  school = _.isEmpty(school) ? '' : school;
+  degree = _.isEmpty(degree) ? '' : degree;
+  fieldofstudy = _.isEmpty(fieldofstudy) ? '' : fieldofstudy;
+  from = _.isEmpty(from) ? '' : from;
 
   if (Validator.isEmpty(school)) {
     errors.school = 'School field is required';
@@ -26,5 +25,5 @@ module.exports = ({ school, degree, from, fieldofstudy }) => {
     errors.fieldofstudy = 'Fieldofstudy field is required';
   }
 
-  return { errors, isValid: isEmpty(errors) };
+  return { errors, isValid: _.isEmpty(errors) };
 };

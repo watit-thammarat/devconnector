@@ -1,12 +1,11 @@
 const Validator = require('validator');
-
-const isEmpty = require('./is-empty');
+const _ = require('lodash');
 
 module.exports = ({ email, password }) => {
   const errors = {};
 
-  email = isEmpty(email) ? '' : email;
-  password = isEmpty(password) ? '' : password;
+  email = _.isEmpty(email) ? '' : email;
+  password = _.isEmpty(password) ? '' : password;
 
   if (Validator.isEmpty(email)) {
     errors.email = 'Email field is required';
@@ -24,5 +23,5 @@ module.exports = ({ email, password }) => {
     errors.password = 'Password must be at least 6 characters';
   }
 
-  return { errors, isValid: isEmpty(errors) };
+  return { errors, isValid: _.isEmpty(errors) };
 };
